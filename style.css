@@ -17,6 +17,7 @@ body{
   overflow: hidden;
   overflow-y: auto;
   text-align: center;
+  font-family: "Train One",cursive;
 }
 h1{
   font-size: 7rem;
