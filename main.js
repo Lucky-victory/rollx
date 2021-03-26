@@ -10,10 +10,13 @@ for (let i = 0; i < circles.length; i++) {
 
 
 }
+roller.oncontextmenu=function(e){
+  e.preventDefault();
+}
 //  map through the circles and set a function to each.
 circles.map((circle,index)=>{
-      eventHandler(circle,"touchstart",startEvent);
-    eventHandler(circle,"mousedown",startEvent);
+      eventHandler(circle,"touchstart",startEvent(circle));
+    eventHandler(circle,"mousedown",startEvent(circle));
     eventHandler(circle,"mousemove",moveEvent(circle));
     eventHandler(circle,"touchmove",moveEvent(circle));
     eventHandler(circle,"touchend",endEvent);
@@ -23,8 +26,14 @@ circles.map((circle,index)=>{
     eventHandler(circle,"mouseleave",endEvent);
 });
 
-function startEvent(){
-  dragging=true;
+function startEvent(circle){
+ let circleImg= circle.querySelector("span img");
+  circleImg.ondragstart=function(e){
+    e.preventDefault();
+  }
+return function(){
+    dragging=true;
+}
   
 }
 function moveEvent(circle){
